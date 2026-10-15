@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <script>alert(`test`)</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .qr-box {
+            margin-top: 25px;
+            display: none;
+        }
+        .qr-box img {
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 6px;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>QR Code Generator</h2>
+    <p style="color: #666; font-size: 14px;">Enter text or a URL below to instantly generate your QR code.</p>
+    <input type="text" id="qrText" placeholder="https://example.com or your text here...">
+    <button onclick="generateQR()">Generate QR Code</button>
+
+    <div class="qr-box" id="qrBox">
+        <img src="" id="qrImage" alt="QR Code">
+    </div>
+</div>
+
+<script>
+    function generateQR() {
+        const qrText = document.getElementById("qrText").value.trim();
+        const qrBox = document.getElementById("qrBox");
+        const qrImage = document.getElementById("qrImage");
+
+        if (qrText.length > 0) {
+            // Uses the free goqr.me API to generate a 200x200 pixel QR code
+            qrImage.src = "https://qrserver.com" + encodeURIComponent(qrText);
+            qrBox.style.display = "block";
+        } else {
+            alert("Please enter some text or a valid URL!");
+        }
+    }
+</script>
+
+</body>
+</html>
